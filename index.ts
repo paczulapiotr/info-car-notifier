@@ -1,6 +1,6 @@
 import { sleep } from "bun";
 import { auth, init, closestDate, type Context } from "./src/page";
-import { CheckIntervalMs, CheckMaxDelayMs } from "./src/env";
+import { CheckIntervalMs, CheckMaxDelayMs, CheckNextDays, CheckNextDaysMs } from "./src/env";
 import Logger from "./src/log";
 import { loadExamDate, saveExamDate } from "./src/file";
 import { sendMessage } from "./src/whatsapp";
@@ -40,7 +40,8 @@ while (run) {
 
     if (
       date != null &&
-      (examDate == null || date.getTime() != examDate.getTime())
+      (examDate == null || date.getTime() != examDate.getTime()) &&
+      date.getTime() <= Date.now() + CheckNextDaysMs
     ) {
       await onExamFound(date);
     }

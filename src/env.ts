@@ -13,6 +13,7 @@ export const Url = process.env.URL || "https://info-car.pl";
 export const Login = process.env.LOGIN;
 export const Password = process.env.PASSWORD;
 export const CheckNextDays = parseInt(process.env.CHECK_NEXT_DAYS || "21");
+export const CheckNextDaysMs = CheckNextDays * 24 * 60 * 60 * 1000;
 
 export const TwilioConfig = {
   SendTo: process.env.TWILIO_SEND_TO,
