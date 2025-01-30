@@ -11,7 +11,7 @@ export const saveExamDate = async (date: Date | undefined) => {
       JSON.stringify({ examDate: date.toISOString() })
     );
   }
-}
+};
 
 export const loadExamDate = async (): Promise<Date | undefined> => {
   try {
@@ -22,5 +22,4 @@ export const loadExamDate = async (): Promise<Date | undefined> => {
     Logger.error("Could not load exam date:", error);
     return undefined;
   }
-}
-
+};

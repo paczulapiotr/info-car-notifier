@@ -28,7 +28,9 @@ export const auth = async (page: Page) => {
   await page.fill("#password", Password ?? "");
   await page.click("#register-button");
   await page.goto(SelectDateUrl);
-  await page.waitForSelector("text=Sprawdź dostępność terminów egzaminu na prawo jazdy");
+  await page.waitForSelector(
+    "text=Sprawdź dostępność terminów egzaminu na prawo jazdy"
+  );
 
   return page;
 };
@@ -74,10 +76,14 @@ export const closestDate = async (
       ctx,
     }
   );
-    
+
   if (error != null) {
     ctx.bearer = null;
-    Logger.error(`Error fetching exams: ${JSON.stringify(error)}, for response: ${JSON.stringify(response)}`);
+    Logger.error(
+      `Error fetching exams: ${JSON.stringify(
+        error
+      )}, for response: ${JSON.stringify(response)}`
+    );
     return null;
   }
 

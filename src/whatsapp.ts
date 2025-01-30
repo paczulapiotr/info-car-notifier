@@ -1,10 +1,10 @@
-import Twilio from 'twilio';
+import Twilio from "twilio";
 import { TwilioConfig } from "./env";
-import Logger from './log';
+import Logger from "./log";
 
 const client = Twilio(TwilioConfig.SID, TwilioConfig.AuthToken);
 
-export const sendMessage = async (message: string) => { 
+export const sendMessage = async (message: string) => {
   try {
     const response = await client.messages.create({
       from: `whatsapp:${TwilioConfig.From}`,
@@ -15,5 +15,4 @@ export const sendMessage = async (message: string) => {
   } catch (error) {
     Logger.error("Error sending message:", error);
   }
-
-}
+};
