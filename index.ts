@@ -4,14 +4,18 @@ import { CheckIntervalMs, CheckMaxDelayMs } from "./src/env";
 import Logger from "./src/log";
 import { loadExamDate, saveExamDate } from "./src/file";
 import { sendMessage } from "./src/whatsapp";
-import { SelectDateUrl } from "./src/urls";
+import { ExamFormUrl, SelectDateUrl } from "./src/urls";
+import { register } from "./src/form/register";
 
 const onExamFound = async (date: Date) => {
   examDate = date;
   saveExamDate(date);
   const formatted = examDate.toLocaleString("pl-PL");
   Logger.info("💥💥💥 NEW EXAM DATE: ", formatted);
-  await sendMessage(`💥💥💥 ${formatted}\n\n${SelectDateUrl}`);
+  register();
+  await sendMessage(
+    `💥💥💥 ${formatted}\n\nPokaz terminy:${SelectDateUrl}\n\nDo formularza: ${ExamFormUrl}`
+  );
 };
 const ctx: Context = { bearer: null };
 
